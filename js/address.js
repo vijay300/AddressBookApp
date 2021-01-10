@@ -33,7 +33,46 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const save = () => {
     try {
         let contact = createContact();
+        createAndUpdateAddressBook(contact);
     } catch (e) {
         return;
     }
+}
+
+const createContact = () => {
+    let addressData = new AddressBookData();
+    try {
+        addressData.name = getInputValueById('#name');
+    } catch (e) {
+        setTextValue('.text-error', e);
+        throw e;
+    }
+    try {
+        addressData.phoneNumber = getInputValueById('#phone');
+    } catch (e) {
+        setTextValue('.phone-error', e);
+        throw e;
+    }
+    addressData.address = getInputValueById('#notes');
+    addressData.city = getInputValueById('#city');
+    addressData.state = getInputValueById('#state');
+    addressData.zipCode = getInputValueById('#zipCode');
+    alert(addressData.toString());
+    return addressData;
+} 
+
+function createAndUpdateAddressBook(addressBookData) {
+    let addressBookList = JSON.parse(localStorage.getItem("AddressBook"));
+
+    if (addressBookList != undefined) {
+        addressBookList.push(addressBookData);
+    } else {
+        addressBookList = [addressBookData];
+    }
+    alert(addressBookList.toString());
+    localStorage.setItem("AddressBook", JSON.stringify(addressBookList));
+}
+const getInputValueById = (id) => {
+    let value = document.querySelector(id).value;
+    return value;
 }
