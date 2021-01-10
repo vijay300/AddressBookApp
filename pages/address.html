@@ -23,10 +23,12 @@
       <div class="row-content">
         <label class="label text" for="name">Full Name</label>
         <input class="input" type="text" id="name" name="name" required>
+        <error-output class="text-error" for="text"></error-output>
       </div>
       <div class="row-content">
         <label class="label text" for="phone">Phone Number</label>
         <input class="input" type="text" id="phone" name="phone" required>
+        <error-output class="phone-error" for="phone"></error-output>
       </div>	
       <div class="row-content">
         <label class="label text" for="address">Address</label>
@@ -53,5 +55,6 @@
     </form>
   </div> <!-- form-content -->
   <script src="../js/address.js"></script>
+  <script src="../js/addressData.js"></script>
 </body>
 </html>
