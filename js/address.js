@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             return;
         }
         try {
-            (new addressData()).name = name.value;
+            (new AddressBookData()).name = name.value;
             textError.textContent = "";
         } catch (e) {
             textError.textContent = e;
@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             return;
         }
         try {
-            (new addressData()).phoneNumber = phone.value;
+            (new AddressBookData()).phoneNumber = phone.value;
             phoneError.textContent = "";
         } catch (e) {
             phoneError.textContent = e;
@@ -38,6 +38,15 @@ const save = () => {
         return;
     }
 }
+
+const reset = () => {
+    setValue('#name','');
+    setValue('#phone','');
+    setValue('#notes','');
+    setValue('#city','');
+    setValue('#state','');
+    setValue('#zipCode','');    
+} 
 
 const createContact = () => {
     let addressData = new AddressBookData();
@@ -75,4 +84,14 @@ function createAndUpdateAddressBook(addressBookData) {
 const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
+}
+
+const setTextValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.textContent = value;
+}
+
+const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
 }
