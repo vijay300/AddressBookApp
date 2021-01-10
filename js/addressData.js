@@ -14,4 +14,31 @@ class addressData {
             this._phoneNumber = phoneNumber;
         else throw 'Phone Number is Incorrect!';
     }
+
+    get address() { return this._address; }
+    set address(address) {
+        this._address = address;
+    }
+
+    get city() { return this._city; }
+    set city(city) {
+        this._city = city;
+    }
+
+    get state() { return this._state; }
+    set state(state) {
+        this._state = state;
+    }
+
+    get zipCode() { return this._zipCode; }
+    set zipCode(zipCode) {
+        this._zipCode = zipCode;
+    }
+
+    toString() {
+        return "Full Name = " + this.name + ", Phone Number = "
+                    + this.phoneNumber + ", address = " + this.address + 
+                    ", city = " + this.city + ", state = " + this.state +
+                    ", zip code = " + this.zipCode;
+    }
 }
