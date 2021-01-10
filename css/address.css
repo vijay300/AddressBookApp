@@ -72,3 +72,65 @@ body {
     padding-top:  30px;
     padding-bottom: 30px;
 }
+
+.row-content {
+    padding-left: 60px;
+    padding-right: 60px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 0px solid #F5F5F5;
+    opacity: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.label {
+    min-width: 140px;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.text {
+    text-align: left;
+    font: normal normal normal 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #42515F;
+    opacity: 1;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.row-33 {
+    flex: 33%;
+}
+
+select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font: normal normal normal 16px Roboto;
+    letter-spacing: 0px;
+    color: #42515f;
+    background-color: transparent;
+}
+
+.drop {
+    text-align: left;
+    font: normal normal normal 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #42515F;
+    opacity: 1;
+    width: 100%;
+    border: 0px solid #ccc;
+    display: inline-block;
+    resize: vertical;
+}

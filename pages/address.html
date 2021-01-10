@@ -20,7 +20,38 @@
   <div class="form-content">
     <form class="form" action="#">
       <div class="form-head" >PERSON ADDRESS FORM</div>
+      <div class="row-content">
+        <label class="label text" for="name">Full Name</label>
+        <input class="input" type="text" id="name" name="name" required>
+      </div>
+      <div class="row-content">
+        <label class="label text" for="phone">Phone Number</label>
+        <input class="input" type="text" id="phone" name="phone" required>
+      </div>	
+      <div class="row-content">
+        <label class="label text" for="address">Address</label>
+        <textarea id="notes" class="input" name="address" style="height: 100px;"></textarea>
+      </div>
+      <div class="row-content">
+        <div class="row-33">
+          <label class="label drop" for="city">City</label>
+          <select id="city" name="city">
+            <option value="" selected="selected">Select City</option>
+          </select>
+        </div>
+        <div class="row-33">
+          <label class="label drop" for="state">State</label>
+          <select id="state" name="state">
+            <option value="" selected = "selected">Select State</option>
+          </select>
+        </div>
+        <div class="row-33">
+          <label class="label text" for="zipCode">Zip Code</label>
+          <input class="input" type="text" id="zipCode" name="zipCode" required>
+        </div>
+      </div>
     </form>
   </div> <!-- form-content -->
+  <script src="../js/address.js"></script>
 </body>
 </html>
