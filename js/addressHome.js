@@ -23,10 +23,21 @@ const createInnerHtml = () => {
             <td>${addressBookData._zipCode}</td>
             <td>${addressBookData._phoneNumber}</td>
             <td>
-                <img name="${addressBookData._id}" onclick="remove(this) alt="delete" src="../assets/delete-black-18dp.svg">
-                <img name="${addressBookData._id}" onclick="update(this) alt="edit" src="../assets/create-black-18dp.svg">
+                <img id="${addressBookData._id}" onclick="remove(this)" alt="delete" src="../assets/delete-black-18dp.svg">
+                <img id="${addressBookData._id}" onclick="update(this)" alt="edit" src="../assets/create-black-18dp.svg">
             </td>
         </tr>
     `;}
     document.querySelector('#table-display').innerHTML = innerHtml;
+}
+
+const remove = (node) => {
+    let addressBookData = addressList.find(addressData => addressData._id == node.id);
+    if(!addressBookData) return;
+    const index = addressList.map(addressData => addressData._id)
+                             .indexOf(addressBookData._id);
+    addressList.splice(index, 1);
+    localStorage.setItem("AddressBook", JSON.stringify(addressList));
+    document.querySelector(".person-count").textContent = addressList.length;
+    createInnerHtml();
 }
