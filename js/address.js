@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     const phone = document.querySelector('#phone');
     const phoneError = document.querySelector('.phone-error');
-    name.addEventListener('input', function() {
+    phone.addEventListener('input', function() {
         if(phone.value.length == 0) {
             phoneError.textContent = "";
             return;
@@ -47,6 +47,14 @@ const reset = () => {
     setValue('#state','');
     setValue('#zipCode','');    
 } 
+
+document.getElementById("image").onclick = function () {
+    location.href = "http://127.0.0.1:5500/AddressBookApp/pages/homePage.html";
+};
+
+document.getElementById("submitButton").onclick = function () {
+    location.href = "http://127.0.0.1:5500/AddressBookApp/pages/homePage.html";
+};
 
 const createContact = () => {
     let addressData = new AddressBookData();

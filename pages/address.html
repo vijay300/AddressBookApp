@@ -19,7 +19,9 @@
   </header>
   <div class="form-content">
     <form class="form" action="#" onreset="reset()" onsubmit="save()">
-      <div class="form-head" >PERSON ADDRESS FORM</div>
+      <div class="form-head" >PERSON ADDRESS FORM
+        <input type="image" onclick="" class="image" id="image" src="../assets/cancel.jpeg">
+      </div>
       <div class="row-content">
         <label class="label text" for="name">Full Name</label>
         <input class="input" type="text" id="name" name="name" required>
@@ -36,15 +38,15 @@
       </div>
       <div class="row-content">
         <div class="row-33">
-          <label class="label drop" for="city">City</label>
-          <select id="city" name="city">
-            <option value="" selected="selected">Select City</option>
+          <label class="label drop" for="state">State</label>
+          <select id="state" name="state">
+            <option value="" selected = "selected" style="width: 100%;">Select State</option>
           </select>
         </div>
         <div class="row-33">
-          <label class="label drop" for="state">State</label>
-          <select id="state" name="state">
-            <option value="" selected = "selected">Select State</option>
+          <label class="label drop" for="city">City</label>
+          <select id="city" name="city">
+            <option value="" selected="selected" style="width: 100%;">Select City</option>
           </select>
         </div>
         <div class="row-33">
