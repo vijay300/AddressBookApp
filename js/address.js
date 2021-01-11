@@ -48,14 +48,6 @@ const reset = () => {
     setValue('#zipCode','');    
 } 
 
-document.getElementById("image").onclick = function () {
-    location.href = "http://127.0.0.1:5500/AddressBookApp/pages/homePage.html";
-};
-
-document.getElementById("submitButton").onclick = function () {
-    location.href = "http://127.0.0.1:5500/AddressBookApp/pages/homePage.html";
-};
-
 const createContact = () => {
     let addressData = new AddressBookData();
     try {
