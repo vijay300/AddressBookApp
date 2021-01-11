@@ -1,8 +1,9 @@
 let addressList;
 window.addEventListener('DOMContentLoaded', (event) => {
     addressList = getAddressDataFromStorage();
-    //document.querySelector("person-count").textContent = addressList.length;
+   document.querySelector(".person-count").textContent = addressList.length;
     createInnerHtml();
+    localStorage.removeItem('editAddress');
 });
 
 const getAddressDataFromStorage = () => {
@@ -40,4 +41,11 @@ const remove = (node) => {
     localStorage.setItem("AddressBook", JSON.stringify(addressList));
     document.querySelector(".person-count").textContent = addressList.length;
     createInnerHtml();
+}
+
+const update = (node) => {
+    let addressBookData = addressList.find(addressData => addressData._id == node.id);
+    if (!addressBookData) return;
+    localStorage.setItem('editAddress', JSON.stringify(addressBookData));
+    window.location.replace()
 }
