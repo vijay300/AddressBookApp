@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             return;
         }
         try {
-            (new AddressBookData()).name = name.value;
+            checkName(name.value);
             textError.textContent = "";
         } catch (e) {
             textError.textContent = e;
@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             return;
         }
         try {
-            (new AddressBookData()).phoneNumber = phone.value;
+            checkPhoneNumber(phone.value);
             phoneError.textContent = "";
         } catch (e) {
             phoneError.textContent = e;
@@ -55,24 +55,45 @@ const setForm = () => {
 const save = () => {
     try {
         setAddressBookObject();
-        createAndUpdateStorage();
-        resetForm();
-        window.location.replace(site_properties.home_page);
+        if (site_properties.use_local_storage.match("true")) {
+            createAndUpdateStorage();
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        } else {
+            createOrUpdateAddress();
+        }
     } catch (e) {
         return;
     }   
 }
 
+const createOrUpdateAddress = () => {
+    let postURL = site_properties.server_url;
+    let methodCall = "POST";
+    if(isUpdate) {
+        methodCall = "PUT";
+        postURL = postURL + addressBookObj.id.toString();
+    }
+    makePromiseCall(methodCall, postURL, false, addressBookObj)
+        .then(resposiveText => {
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        })
+        .catch(error => {
+            throw error;
+        });
+}
+
 const createAndUpdateStorage = () => {
     let addressBookList = JSON.parse(localStorage.getItem("AddressBook"));
     if (addressBookList) {
-        let addressBookData = addressBookList.find(addressData => addressData._id == addressBookObj._id);
+        let addressBookData = addressBookList.find(addressData => addressData.id == addressBookObj.id);
         if(!addressBookData) {
-            addressBookList.push(createAddressBookData());
+            addressBookList.push(addressBookObj);
         } else {
-            const index = addressBookList.map(addressData => addressData._id)
-                                         .indexOf(addressBookData._id);
-            addressBookList.splice(index, 1, createAddressBookData(addressBookData._id));
+            const index = addressBookList.map(addressData => addressData.id)
+                                         .indexOf(addressBookData.id);
+            addressBookList.splice(index, 1, addressBookObj);
         }
     } else {
         addressBookList = [createAddressBookData()]
@@ -118,6 +139,9 @@ const createNewAddressId = () => {
 }
 
 const setAddressBookObject = () => {
+    if(!isUpdate && site_properties.use_local_storage.match("true")) {
+        addressBookObj.id = createNewAddressId();
+    }
     addressBookObj._name = getInputValueById('#name');
     addressBookObj._phoneNumber = getInputValueById('#phone');
     addressBookObj._address = getInputValueById('#notes');
@@ -126,7 +150,7 @@ const setAddressBookObject = () => {
     addressBookObj._zipCode = getInputValueById('#zipCode');
 }
 
-const reset = () => {
+const resetForm = () => {
     setValue('#name','');
     setValue('#phone','');
     setValue('#notes','');
@@ -181,4 +205,37 @@ const setTextValue = (id, value) => {
 const setValue = (id, value) => {
     const element = document.querySelector(id);
     element.value = value;
+}
+
+function makePromiseCall(methodType, url, async = true, data = null) {
+    return new Promise(function (resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200 || xhr.status === 201) {
+                    resolve(xhr.responseText);
+                } else if (xhr.status >= 400) {
+                    reject({
+                        status: xhr.status,
+                        statusText: xhr.statusText
+                    });
+                    console.log("Handle 400 Client Error or 500 Server Error at: " + showTime());
+                }
+            }
+        }
+        
+        xhr.onerror = function () {
+            reject({
+                status: this.status,
+                statusText: xhttp.statusText
+            });
+        }
+        xhr.open(methodType, url, async);
+        if (data) {
+            console.log(JSON.stringify(data));
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        } else xhr.send();
+        console.log(methodType + " request sent to the server at : " + showTime());
+    });
 }

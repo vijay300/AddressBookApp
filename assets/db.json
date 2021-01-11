@@ -1,0 +1,40 @@
+{
+  "AddressBook": [
+    {
+      "id": 1,
+      "_name": "vijay",
+      "_phoneNumber": "91 8954903400",
+      "_address": "rajeev nagar",
+      "_city": "Visakhapatnam",
+      "_state": "Andhra pradesh",
+      "zipCode": 122345
+    },
+    {
+      "id": 2,
+      "_name": "harsha",
+      "_phoneNumber": "91 9977668989",
+      "_address": "iit",
+      "_city": "Kanpur",
+      "_state": "Uttar pradesh",
+      "zipCode": 208016
+    },
+    {
+      "_name": "Vijay",
+      "_phoneNumber": "91 9908893203",
+      "_address": "rajeev nagar",
+      "_city": "Visakhapatnam",
+      "_state": "Andhra Pradesh",
+      "_zipCode": "530046",
+      "id": 3
+    },
+    {
+      "_name": "Vijay",
+      "_phoneNumber": "91 7908893203",
+      "_address": "palakad",
+      "_city": "Kunnamkulam",
+      "_state": "Kerala",
+      "_zipCode": "678767",
+      "id": 4
+    }
+  ]
+}
