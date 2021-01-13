@@ -78,7 +78,7 @@ const update = (node) => {
     let addressBookData = addressList.find(addressData => addressData.id == node.id);
     if (!addressBookData) return;
     localStorage.setItem('editAddress', JSON.stringify(addressBookData));
-    window.location.replace(site_properties.add_emp_payroll_page);
+    window.location.replace(site_properties.add_address_page);
 }
 
 function makePromiseCall(methodType, url, async = true, data = null) {

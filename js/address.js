@@ -52,7 +52,9 @@ const setForm = () => {
     setValue('#zipCode', addressBookObj._zipCode);
 }
 
-const save = () => {
+const save = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     try {
         setAddressBookObject();
         if (site_properties.use_local_storage.match("true")) {
@@ -63,6 +65,7 @@ const save = () => {
             createOrUpdateAddress();
         }
     } catch (e) {
+        alert(e);
         return;
     }   
 }
@@ -77,7 +80,6 @@ const createOrUpdateAddress = () => {
     makePromiseCall(methodCall, postURL, false, addressBookObj)
         .then(resposiveText => {
             resetForm();
-            window.location.replace(site_properties.home_page);
         })
         .catch(error => {
             throw error;
@@ -156,7 +158,8 @@ const resetForm = () => {
     setValue('#notes','');
     setValue('#city','');
     setValue('#state','');
-    setValue('#zipCode','');    
+    setValue('#zipCode','');   
+    window.location.replace(site_properties.home_page); 
 } 
 
 const createContact = () => {
